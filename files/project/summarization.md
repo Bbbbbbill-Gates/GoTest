@@ -37,7 +37,7 @@ Package sync：保证 happens before 数据同步问题必要的一些关键字
 
 contxt: 类似于 TLS（线程局部存储），我们为一些 goroutine 的 context 保存一些相关的信息方便我们对超时、错误的 fan out 做相应处理
 
-## 工程事件
+## 工程实践
 
 目录结构：
 - cmd: 项目主干
@@ -48,3 +48,36 @@ contxt: 类似于 TLS（线程局部存储），我们为一些 goroutine 的 co
   - 4+1 类 APP 服务类型：interface（对外BFF）、service（对内微服务）、job（流式任务处理）、admin（面向运营）、task（定时任务）
 
 API 设计：
+- API Project：检索和规范 API 接口
+- 向后兼容的修改，不兼容就 major version number
+- 错误传播：向上报错误，转化为当前可以识别的错误类型向上传递
+
+## 可用性设计
+- 隔离
+- 超时
+- 过载保护和限流
+- 降级
+- 重试
+- 负载均衡
+
+## 分布式
+- 分布式缓存
+- 分布式事务
+
+## 日志
+
+- 日志级别
+- 日志选型：ES、logstash、Kibana
+
+## 消息队列 kafka
+
+- topic、partition
+- producer、consumer
+- leader、follower
+
+## go runtime
+
+- goroutine
+- 内存分配
+- gc
+- channel
